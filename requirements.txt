@@ -1,7 +1,5 @@
 matplotlib==3.7.3
-tensorflow.python.framework.versions==2.6.0
 keras_preprocessing==1.1.2
-
 h5py==3.9.0
 tensorflow.python.keras==2.6.0
 tensorflow._api.v2.compat.v1.compat.v1==2.6.0
