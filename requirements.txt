@@ -1,12 +1,7 @@
 matplotlib==3.7.3
-keras_preprocessing==1.1.2
 h5py==3.9.0
 tensorflow.python.keras==2.6.0
 tensorflow._api.v2.compat.v1.compat.v1==2.6.0
 tensorboard==2.6.0
-keras==2.6.0
-keras.api.keras==2.6.0
-keras.api._v2.keras==2.6.0
-tensorflow.keras==2.6.0
 obspy.imaging.scripts.mopad==1.4.1
 obspy==1.4.1
