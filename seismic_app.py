@@ -66,7 +66,14 @@ client = Client("IRIS")
 
 st = get_stream(network, station_code, location, channel, starttime, endtime)
 
-st.plot()
+
+# Plot the seismogram
+fig = plt.figure()
+ax = fig.add_subplot(111)
+st.plot(ax=ax, show=False)
+
+# Display the plot in Streamlit
+st.pyplot(fig)
 
 # Credit Section
 streamlit.header('Credits')
