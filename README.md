@@ -1,6 +1,6 @@
-# Seismogram-prediction
+# Final project
 
-# Project Title
+# Seismogram-prediction
 
 Develeping a long-short-term-memory neural network model for prediction of waveform data for seismologic station.
 
