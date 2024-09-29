@@ -1,3 +1,4 @@
+import streamlit as st
 import os
 import time
 from obspy import read, Stream, Trace
