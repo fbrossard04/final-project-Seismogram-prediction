@@ -9,8 +9,7 @@ from datetime import timedelta
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import LSTM, Dense, Dropout, BatchNormalization
+
 from sklearn.preprocessing import MinMaxScaler
 
 from sklearn.metrics import mean_absolute_percentage_error, mean_absolute_error, mean_squared_error
@@ -55,7 +54,7 @@ def get_stream(network, station_code, location, channel, starttime, endtime):
 # Streamlit app
 st.title('Final Project')
 
-seconds = (look_back/20)
+#seconds = (look_back/20)
 starttime = UTCDateTime(2023, 9, 10)
 endtime = starttime + timedelta(seconds=350)
 
