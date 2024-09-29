@@ -2,7 +2,7 @@
 
 # Project Title
 
-A brief description of what this project does and who it's for.
+Develeping a long-short-term-memory neural network model for prediction of waveform data for seismologic station.
 
 ## Table of Contents
 
