@@ -74,7 +74,7 @@ plt.xlabel('Time')
 plt.ylabel('Amplitude')
 plt.title('Seismogram Plot')
 plt.legend()
-st.pyplot(fig)
+streamlit.pyplot(fig)
 
 # Credit Section
 streamlit.header('Credits')
