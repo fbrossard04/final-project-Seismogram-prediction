@@ -15,7 +15,6 @@ from sklearn.preprocessing import MinMaxScaler
 
 from sklearn.metrics import mean_absolute_percentage_error, mean_absolute_error, mean_squared_error
 from keras.models import load_model
-from tensorflow.keras.callbacks import ModelCheckpoint
 
 # Load your trained model
 #model = load_model('fine_tuned_model.h5')
