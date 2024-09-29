@@ -1,4 +1,4 @@
-import streamlit as st
+
 import os
 import time
 from obspy import read, Stream, Trace
@@ -53,7 +53,7 @@ def get_stream(network, station_code, location, channel, starttime, endtime):
     return st
 
 # Streamlit app
-st.title('Final Project')
+streamlit.title('Final Project')
 
 #seconds = (look_back/20)
 starttime = UTCDateTime(2023, 9, 10)
@@ -70,7 +70,7 @@ st = get_stream(network, station_code, location, channel, starttime, endtime)
 st.plot()
 
 # Credit Section
-st.header('Credits')
-st.write('This project was developed using obspy')
-#st.write('https://www.kaggle.com/datasets/gpiosenka/100-bird-species')
-st.write('Project developped Francois Brossard')
+streamlit.header('Credits')
+streamlit.write('This project was developed using obspy')
+#streamlit.write('https://www.kaggle.com/datasets/gpiosenka/100-bird-species')
+streamlit.write('Project developped Francois Brossard')
