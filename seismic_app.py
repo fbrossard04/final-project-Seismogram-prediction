@@ -18,8 +18,6 @@ from sklearn.metrics import mean_absolute_percentage_error, mean_absolute_error,
 from keras.models import load_model
 import joblib
 
-# Load your trained model
-#model = load_model('fine_tuned_model.h5')
 
 def get_data(st):
     """Take a stream, fill gap with interpolate  and return  data"""
