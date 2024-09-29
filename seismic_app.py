@@ -92,7 +92,7 @@ def plot_prediction(trace, predictions):
     # Display the plot in Streamlit
     st.pyplot(fig)
     
-def update_data():
+def update_data(look_back, batch_size):
     seconds = ((look_back * batch_size) / 20)
     endtime = UTCDateTime(datetime.utcnow())
     starttime = endtime - timedelta(seconds=seconds)
@@ -137,7 +137,15 @@ channel = 'BHZ'
 location = ""
 client = Client("IRIS")
 
+# Create a placeholder
+placeholder = st.empty()
 
+# Run the update function every 30 seconds
+while True:
+    with placeholder.container():
+        update_data()
+    time.sleep(30)
+    
 st = get_stream(network, station_code, location, channel, starttime, endtime)
 trace = st[0]
 
