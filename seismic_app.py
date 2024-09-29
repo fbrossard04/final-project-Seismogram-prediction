@@ -137,16 +137,7 @@ channel = 'BHZ'
 location = ""
 client = Client("IRIS")
 
-update_data(seconds = ((look_back*batch_size)/20),
-            endtime = UTCDateTime(datetime.utcnow()),
-            starttime = endtime - delta(seconds=seconds),
-            st = get_stream(network, station_code, location, channel, starttime, endtime),
-            trace = st[0],
-            data = get_data(st),
-            prepare_window_prediction(data, look_back, output, batch_size),            
-            prediction_output(window, model, look_back, batch_size),
-            plot_prediction(trace, predictions)            
-           )
+
 st = get_stream(network, station_code, location, channel, starttime, endtime)
 trace = st[0]
 
