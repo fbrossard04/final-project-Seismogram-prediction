@@ -31,16 +31,16 @@ Somes of the challenges encountered during the project.
 
 Creating a stable environment with the specialised libraries.
 
-Large amount of available data can require alot of computational
+Large amount of available data can require alot of computational.
 
 Complex field in general.
 
 # Ressources
 main library comes from obspy (https://docs.obspy.org/)
 
-Model by Tensorflow/Keras
+Model by Tensorflow/Keras.
 
-Deployed with Streamlit
+Deployed with Streamlit.
 
 
 # License
@@ -50,4 +50,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 Francois Brossard 
 fbrossard04@gmail.com
 
-Project Link: https://github.com/your-username/seismogram-prediction
+Project Link: https://github.com/fbrossard04/final-project-Seismogram-prediction
