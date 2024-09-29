@@ -70,7 +70,7 @@ st = get_stream(network, station_code, location, channel, starttime, endtime)
 # Plot the seismogram
 fig = plt.figure()
 ax = fig.add_subplot(111)
-st.plot(ax=ax, show=False)
+st.plot()
 
 # Display the plot in Streamlit
 st.pyplot(fig)
