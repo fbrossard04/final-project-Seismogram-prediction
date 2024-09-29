@@ -15,6 +15,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 from sklearn.metrics import mean_absolute_percentage_error, mean_absolute_error, mean_squared_error
 from keras.models import load_model
+import joblib
 
 # Load your trained model
 #model = load_model('fine_tuned_model.h5')
@@ -50,6 +51,8 @@ def get_stream(network, station_code, location, channel, starttime, endtime):
       print(f"Error fetching data for {network} {station_code}: {e}")
       st = None
     return st
+    
+scaler = joblib.load('scaler.save')
 
 # Streamlit app
 streamlit.title('Final Project')
