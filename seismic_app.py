@@ -69,7 +69,7 @@ trace = st[0]
 
 # Plot the seismogram using Matplotlib
 fig = plt.figure(figsize=(10, 6))
-plt.plot(trace.times("matplotlib"), trace.data, label='Seismogram Data')
+plt.plot(trace.times("Datetime"), trace.data, label='Seismogram Data')
 plt.xlabel('Time')
 plt.ylabel('Amplitude')
 plt.title('Seismogram Plot')
