@@ -1,7 +1,8 @@
-import streamlit
+import streamlit as st
 import os
 import time
-from obspy import read, Stream, Trace
+from obspy import read, Trace
+from obspy import Stream as stream
 from obspy.clients.fdsn import Client
 from obspy import UTCDateTime
 import matplotlib.pyplot as plt
@@ -46,34 +47,89 @@ def get_stream(network, station_code, location, channel, starttime, endtime):
     try:
         client = Client("IRIS")
 
-        st = client.get_waveforms(network, station_code, location, channel, starttime, endtime)
+        stream = client.get_waveforms(network, station_code, location, channel, starttime, endtime)
     except Exception as e:
       print(f"Error fetching data for {network} {station_code}: {e}")
-      st = None
-    return st
+      stream = None
+    return stream
 
-def prediction_output(window, model, look_back):
+def prediction_output(window, model, look_back, batch_size):
+    #reseting the state
+    model.reset_states()
+    
     # Normalise and  Reshape the initial window
     window = scale_data(window, scaler)
-    window = np.reshape(window, (1, look_back, 1))
-
-    predicted_value = model.predict(window, verbose = 0)  # Example predicted value
-
+    window = np.reshape(window, (batch_size, look_back, 1))
+    
+    #Prediction
+    predicted_value = model.predict(window, verbose = 0)  
+    
+    #Returning prediction to original format
     predictions = inverse_scaler(predicted_value, scaler)
     return predictions
+
+def prepare_window_prediction(data, look_back, output, batch_size):
+    window_range = look_back*batch_size
+    window = data[-window_range:]
+    return window
+
+def plot_prediction(trace, predictions):
+    fig = plt.figure(figsize=(10, 6))
+    
+    # Plot the seismogram data
+    plt.plot(trace.times("matplotlib"), trace.data, label='Seismogram Data')
+    
+    # Plot the predictions at the end of the seismogram data
+    end_time = trace.times("matplotlib")[-1]
+    prediction_times = [end_time + i for i in range(1, len(predictions[0]) + 1)]
+    plt.plot(prediction_times, predictions[0], label='Predictions')
+    
+    plt.xlabel('Time')
+    plt.ylabel('Amplitude')
+    plt.title('Seismogram Plot')
+    plt.legend()
+    
+    # Display the plot in Streamlit
+    st.pyplot(fig)
+    
+def update_data():
+    seconds = ((look_back * batch_size) / 20)
+    endtime = UTCDateTime(datetime.utcnow())
+    starttime = endtime - timedelta(seconds=seconds)
+    
+    st = get_stream(network, station_code, location, channel, starttime, endtime)
+    trace = st[0]
+    data = get_data(st)
+    
+    window, predictions = prepare_window_prediction(data, look_back, output, batch_size)
+    predictions = prediction_output(window, model, look_back, batch_size)
+    
+    plot_prediction(trace, predictions)
+    st.write("Data updated at:", time.strftime("%Y-%m-%d %H:%M:%S"))
+
+# Create a placeholder
+placeholder = st.empty()
+
+# Run the update function every 30 seconds
+while True:
+    with placeholder.container():
+        update_data()
+    time.sleep(30)
 
 scaler = joblib.load('scaler.save')
 
 model = load_model('model_quick_stateful_i2000_o600_epoch20.hdf5')
 
 look_back = 2000
+output = 600
+batch_size = 4
 
 # Streamlit app
-streamlit.title('Final Project')
+st.title('Final Project')
 
-#seconds = (look_back/20)
-starttime = UTCDateTime(2023, 9, 10)
-endtime = starttime + timedelta(seconds=350)
+seconds = ((look_back*batch_size)/20)
+starttime = endtime - delta(seconds=seconds)
+endtime = UTCDateTime(datetime.utcnow())
 
 network = "MX"
 station_code = "MOIG"
@@ -81,6 +137,16 @@ channel = 'BHZ'
 location = ""
 client = Client("IRIS")
 
+update_data(seconds = ((look_back*batch_size)/20),
+            endtime = UTCDateTime(datetime.utcnow()),
+            starttime = endtime - delta(seconds=seconds),
+            st = get_stream(network, station_code, location, channel, starttime, endtime),
+            trace = st[0],
+            data = get_data(st),
+            prepare_window_prediction(data, look_back, output, batch_size),            
+            prediction_output(window, model, look_back, batch_size),
+            plot_prediction(trace, predictions)            
+           )
 st = get_stream(network, station_code, location, channel, starttime, endtime)
 trace = st[0]
 
