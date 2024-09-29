@@ -107,14 +107,6 @@ def update_data(look_back, batch_size):
     plot_prediction(trace, predictions)
     st.write("Data updated at:", time.strftime("%Y-%m-%d %H:%M:%S"))
 
-# Create a placeholder
-placeholder = st.empty()
-
-# Run the update function every 30 seconds
-while True:
-    with placeholder.container():
-        update_data()
-    time.sleep(30)
 
 scaler = joblib.load('scaler.save')
 
