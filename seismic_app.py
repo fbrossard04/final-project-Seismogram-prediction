@@ -68,7 +68,7 @@ st = get_stream(network, station_code, location, channel, starttime, endtime)
 trace = st[0]
 
 # Plot the seismogram using Matplotlib
-plt.figure(figsize=(10, 6))
+fig = plt.figure(figsize=(10, 6))
 plt.plot(trace.times("matplotlib"), trace.data, label='Seismogram Data')
 plt.xlabel('Time')
 plt.ylabel('Amplitude')
