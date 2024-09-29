@@ -1,5 +1,5 @@
 matplotlib==3.7.3
 obspy==1.4.1
-tensorflow==2.6
+tensorflow
 scikit-learn
-keras
+keras==2.6.0
