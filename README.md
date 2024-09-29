@@ -26,7 +26,7 @@ Model sucess as been limited.
 
 Potential use is filling gaps in live data to improve to training of more complex model in the field.
 
-#Challenges
+# Challenges
 Somes of the challenges encountered during the project.
 
 Creating a stable environment with the specialised libraries.
@@ -35,7 +35,7 @@ Large amount of available data can require alot of computational
 
 Complex field in general.
 
-#Ressources
+# Ressources
 main library comes from obspy (https://docs.obspy.org/)
 
 Model by Tensorflow/Keras
@@ -43,10 +43,10 @@ Model by Tensorflow/Keras
 Deployed with Streamlit
 
 
-License
+# License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-Contact
+# Contact
 Francois Brossard 
 fbrossard04@gmail.com
 
