@@ -92,7 +92,7 @@ def plot_prediction(trace, predictions):
     # Display the plot in Streamlit
     st.pyplot(fig)
     
-def update_data(look_back, batch_size):
+def update_data():
     seconds = ((look_back * batch_size) / 20)
     endtime = UTCDateTime(datetime.utcnow())
     starttime = endtime - timedelta(seconds=seconds)
