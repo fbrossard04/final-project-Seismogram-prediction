@@ -1,6 +1,6 @@
 # Final project DS-19
 
-# Seismogram-prediction
+# Seismogram-prediction-project
 
 Develeping a long-short-term-memory neural network model for prediction of waveform data for seismologic station.
 
