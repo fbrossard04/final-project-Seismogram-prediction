@@ -51,8 +51,22 @@ def get_stream(network, station_code, location, channel, starttime, endtime):
       print(f"Error fetching data for {network} {station_code}: {e}")
       st = None
     return st
-    
+
+def prediction_output(window, model, look_back):
+    # Normalise and  Reshape the initial window
+    window = scale_data(window, scaler)
+    window = np.reshape(window, (1, look_back, 1))
+
+    predicted_value = model.predict(window, verbose = 0)  # Example predicted value
+
+    predictions = inverse_scaler(predicted_value, scaler)
+    return predictions
+
 scaler = joblib.load('scaler.save')
+
+model = load_model('model_quick_stateful_i2000_o600_epoch20.hdf5')
+
+look_back = 2000
 
 # Streamlit app
 streamlit.title('Final Project')
@@ -69,6 +83,12 @@ client = Client("IRIS")
 
 st = get_stream(network, station_code, location, channel, starttime, endtime)
 trace = st[0]
+
+data = get_data(st)
+window = data[-look_back:]
+pred = prediction_output(window, model, look_back)
+print(pred)
+
 
 # Plot the seismogram using Matplotlib
 fig = plt.figure(figsize=(10, 6))
